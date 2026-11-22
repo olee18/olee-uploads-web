@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ເຂົ້າສູ່ລະບົບ · OLEE UPLOADES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="icons.js"></script>
+  <script src="theme.js"></script>
+</head>
+<body class="login-body">
+
+  <button id="themeToggle" class="theme-toggle floating" aria-label="ປ່ຽນທີມ"></button>
+
+  <main class="login-card">
+    <div class="brand">
+      <div class="brand-logo" data-icon="logo"></div>
+      <h1>OLEE UPLOADES</h1>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="field">
+        <label for="username">ຊື່ຜູ້ໃຊ້</label>
+        <input type="text" id="username" placeholder="ປ້ອນຊື່ຜູ້ໃຊ້" autocomplete="username">
+      </div>
+
+      <div class="field">
+        <label for="password">ລະຫັດຜ່ານ</label>
+        <div class="password-wrap">
+          <input type="password" id="password" placeholder="ປ້ອນລະຫັດຜ່ານ" autocomplete="current-password">
+          <button type="button" id="togglePassword" class="toggle-pass" aria-label="ສະແດງລະຫັດຜ່ານ">ສະແດງ</button>
+        </div>
+      </div>
+
+      <label class="remember">
+        <input type="checkbox" id="remember"> ຈື່ຂ້ອຍໄວ້
+      </label>
+
+      <p id="errorMsg" class="error-msg" role="alert"></p>
+
+      <button type="submit" class="btn btn-primary btn-block">ເຂົ້າສູ່ລະບົບ</button>
+    </form>
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>

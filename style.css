@@ -1,0 +1,447 @@
+/* ສີ ແລະ ຕົວແປພື້ນຖານ */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #0b3d20;
+  --muted: #4d7a5e;
+  --border: #d3e8da;
+  --primary: #16a34a;
+  --primary-hover: #15803d;
+  --primary-soft: #dcfce7;
+  --on-primary: #ffffff;
+  --accent: #10b981;
+  --danger: #e5484d;
+  --success: #2fa36b;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(28, 34, 51, 0.08);
+  --login-bg: #ffffff;
+}
+
+/* ໂໝດມືດ: ຕາມເຄື່ອງ (ຖ້າຍັງບໍ່ໄດ້ເລືອກແຈ້ງເອງ) ຫຼື ເລືອກມືດເອງ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000;
+    --surface: #000000;
+    --text: #c8f7d6;
+    --muted: #7fb894;
+    --border: #1d3a28;
+    --primary: #22c55e;
+    --primary-hover: #4ade80;
+    --primary-soft: #11301d;
+    --on-primary: #03140a;
+    --accent: #34d399;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    --login-bg: #000000;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #000000;
+  --surface: #000000;
+  --text: #c8f7d6;
+  --muted: #7fb894;
+  --border: #1d3a28;
+  --primary: #22c55e;
+  --primary-hover: #4ade80;
+  --primary-soft: #11301d;
+  --on-primary: #03140a;
+  --accent: #34d399;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --login-bg: #000000;
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  transition: background .25s, color .25s;
+  font-family: "Noto Sans Lao", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+button { font: inherit; cursor: pointer; }
+
+/* ໄອຄອນ SVG */
+.icon { width: 1.15em; height: 1.15em; flex-shrink: 0; vertical-align: -0.2em; }
+.btn .icon { margin-right: 6px; }
+
+/* ປຸ່ມ */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 600;
+  transition: background .2s, transform .1s;
+}
+.btn:active { transform: scale(.98); }
+.btn-primary { background: var(--primary); color: var(--on-primary); }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--primary-soft); }
+.btn-block { width: 100%; padding: 13px; font-size: 1rem; }
+
+/* ໜ້າ LOGIN */
+.login-body {
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: var(--login-bg);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 36px 30px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.brand { text-align: center; margin-bottom: 26px; }
+.brand h1 { font-size: 1.6rem; margin-top: 10px; }
+.brand p { color: var(--muted); font-size: .95rem; }
+
+.brand-logo {
+  width: 56px; height: 56px;
+  margin: 0 auto;
+  border-radius: 16px;
+  display: grid; place-items: center;
+  font-size: 1.4rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+.brand-logo.small {
+  width: 32px; height: 32px;
+  border-radius: 9px;
+  font-size: .85rem;
+  display: inline-grid;
+  margin: 0;
+}
+
+.field { margin-bottom: 16px; }
+.field label { display: block; font-weight: 500; margin-bottom: 6px; font-size: .95rem; }
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.field input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+.field input.invalid { border-color: var(--danger); }
+
+.password-wrap { position: relative; }
+.password-wrap input { padding-right: 76px; }
+.toggle-pass {
+  position: absolute; right: 8px; top: 50%;
+  transform: translateY(-50%);
+  border: none; background: none;
+  color: var(--primary);
+  font-size: .85rem; font-weight: 600;
+  padding: 4px 8px;
+}
+
+.remember {
+  display: flex; align-items: center; gap: 8px;
+  font-size: .9rem; color: var(--muted);
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.remember input { accent-color: var(--primary); width: 16px; height: 16px; }
+
+.error-msg {
+  min-height: 1.4em;
+  color: var(--danger);
+  font-size: .9rem;
+  margin-bottom: 8px;
+}
+
+.hint {
+  text-align: center;
+  margin-top: 18px;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.shake { animation: shake .4s; }
+@keyframes shake {
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* ໜ້າ UPLOAD */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; }
+.topbar-user { display: flex; align-items: center; gap: 14px; font-size: .95rem; }
+
+/* ປຸ່ມປ່ຽນທີມ */
+.theme-toggle {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.05rem;
+  display: grid; place-items: center;
+  transition: background .2s, transform .2s;
+}
+.theme-toggle:hover { background: var(--primary-soft); transform: rotate(15deg); }
+.theme-toggle.floating { position: fixed; top: 16px; right: 16px; z-index: 10; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 28px 16px 60px; }
+
+section h2 { font-size: 1.25rem; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+
+.drop-zone {
+  display: block;
+  text-align: center;
+  padding: 44px 20px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.drop-zone:hover, .drop-zone.dragover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.drop-icon {
+  width: 60px; height: 60px; margin: 0 auto 12px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 1.5rem;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+.drop-title { font-weight: 600; }
+.drop-title span { color: var(--primary); text-decoration: underline; }
+.drop-sub { color: var(--muted); font-size: .85rem; margin-top: 4px; }
+
+.progress-list { list-style: none; margin-top: 14px; display: grid; gap: 8px; }
+.progress-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: .9rem;
+}
+.progress-item .row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.progress-item .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.progress-bar { height: 6px; border-radius: 6px; background: var(--border); overflow: hidden; }
+.progress-bar span { display: block; height: 100%; width: 0; background: var(--primary); transition: width .15s; }
+.progress-item.done .progress-bar span { background: var(--success); }
+.progress-item.failed { border-color: var(--danger); color: var(--danger); }
+
+.gallery-section { margin-top: 40px; }
+.gallery-head {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+  margin-bottom: 14px;
+}
+.gallery-head h2 { margin-bottom: 0; }
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+  max-width: 320px;
+  color: var(--muted);
+}
+.search-box .icon {
+  position: absolute; left: 13px; top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 8px 14px 8px 38px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.badge {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: .8rem;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+.filters {
+  display: flex; gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+}
+.filter {
+  border: none; background: none;
+  color: var(--muted);
+  padding: 6px 14px;
+  border-radius: 7px;
+  font-size: .9rem;
+}
+.filter.active { background: var(--primary); color: var(--on-primary); }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  animation: pop .25s ease-out;
+}
+@keyframes pop { from { opacity: 0; transform: scale(.96); } }
+
+.card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #000;
+  cursor: zoom-in;
+}
+.card-media img, .card-media video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.type-tag {
+  position: absolute; top: 8px; left: 8px;
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+  font-size: .75rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.play-icon {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  color: #fff; font-size: 2.2rem;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .5));
+  pointer-events: none;
+}
+
+.card-body { padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
+.card-info { flex: 1; min-width: 0; }
+.card-name { font-size: .9rem; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card-meta { font-size: .78rem; color: var(--muted); }
+
+.icon-btn {
+  border: none; background: none;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 1rem;
+  flex-shrink: 0;
+  display: grid; place-items: center;
+}
+a.icon-btn { display: grid; place-items: center; text-decoration: none; }
+.icon-btn:hover { background: var(--primary-soft); color: var(--primary); }
+.icon-btn.delete:hover { background: rgba(229, 72, 77, .12); color: var(--danger); }
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  padding: 50px 20px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+/* ໜ້າຕ່າງເບິ່ງໄຟລ໌ */
+.viewer {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(0, 0, 0, .88);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 50px 16px 20px;
+}
+.viewer[hidden] { display: none; }
+.audio-icon {
+  height: 100%;
+  display: grid; place-items: center;
+  font-size: 3rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+.card-media audio {
+  position: absolute; left: 8px; right: 8px; bottom: 8px;
+  width: calc(100% - 16px);
+}
+.viewer-content audio { width: min(480px, 92vw); }
+
+.viewer-content img, .viewer-content video {
+  max-width: 92vw;
+  max-height: 80vh;
+  border-radius: 10px;
+  display: block;
+}
+.viewer-caption { color: #ddd; margin-top: 12px; font-size: .9rem; text-align: center; word-break: break-all; }
+.viewer-close {
+  position: absolute; top: 14px; right: 18px;
+  border: none; background: rgba(255, 255, 255, .15);
+  color: #fff; font-size: 1.2rem;
+  display: grid; place-items: center;
+  width: 40px; height: 40px; border-radius: 50%;
+}
+.viewer-close:hover { background: rgba(255, 255, 255, .3); }
+
+/* ແຈ້ງເຕືອນ */
+.toast {
+  position: fixed; left: 50%; bottom: 24px;
+  transform: translateX(-50%) translateY(120px);
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: .9rem;
+  transition: transform .3s;
+  z-index: 60;
+  max-width: calc(100% - 32px);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ໜ້າຈໍມືຖື */
+@media (max-width: 600px) {
+  .topbar { padding: 10px 16px; }
+  .topbar-user span { display: none; }
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card-body { padding: 8px; }
+  .login-card { padding: 28px 20px; }
+}

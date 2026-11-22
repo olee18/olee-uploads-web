@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OLEE UPLOADES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="icons.js"></script>
+  <script src="theme.js"></script>
+  <script>
+    // ຍັງບໍ່ login ໃຫ້ກັບໄປໜ້າ login
+    if (!sessionStorage.getItem("mb_user") && !localStorage.getItem("mb_user")) {
+      location.replace("index.html");
+    }
+  </script>
+</head>
+<body class="app-body">
+
+  <header class="topbar">
+    <div class="topbar-brand"><span class="brand-logo small" data-icon="logo"></span>OLEE UPLOADES</div>
+    <div class="topbar-user">
+      <button id="themeToggle" class="theme-toggle" aria-label="ປ່ຽນທີມ"></button>
+      <span>ສະບາຍດີ, <b id="userName"></b></span>
+      <button id="logoutBtn" class="btn btn-ghost" data-icon="logout">ອອກຈາກລະບົບ</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="upload-section">
+      <h2>ອັບໂຫລດໄຟລ໌</h2>
+      <label id="dropZone" class="drop-zone" for="fileInput">
+        <input type="file" id="fileInput" accept="image/*,video/*,audio/*" multiple hidden>
+        <div class="drop-icon" data-icon="upload"></div>
+        <p class="drop-title">ລາກໄຟລ໌ມາວາງບ່ອນນີ້ ຫຼື <span>ກົດເພື່ອເລືອກ</span></p>
+        <p class="drop-sub">ຮອງຮັບຮູບ (JPG, PNG, GIF, WEBP) ວິດີໂອ (MP4, WEBM, MOV) ແລະ ສຽງ (MP3, WAV, OGG) · ສູງສຸດ 50MB ຕໍ່ໄຟລ໌</p>
+      </label>
+
+      <ul id="progressList" class="progress-list"></ul>
+    </section>
+
+    <section class="gallery-section">
+      <div class="gallery-head">
+        <h2>ຄັງຂອງຂ້ອຍ <span id="countBadge" class="badge">0</span></h2>
+        <label class="search-box" data-icon="search">
+          <input type="search" id="searchInput" class="search-input" placeholder="ຄົ້ນຫາຕາມຊື່ໄຟລ໌...">
+        </label>
+        <div class="filters" role="tablist">
+          <button class="filter active" data-filter="all">ທັງໝົດ</button>
+          <button class="filter" data-filter="image">ຮູບ</button>
+          <button class="filter" data-filter="video">ວິດີໂອ</button>
+          <button class="filter" data-filter="audio">ສຽງ</button>
+        </div>
+      </div>
+
+      <div id="gallery" class="gallery"></div>
+      <p id="emptyState" class="empty-state">ຍັງບໍ່ມີໄຟລ໌ — ລອງອັບໂຫລດຮູບ ຫຼື ວິດີໂອເບິ່ງ</p>
+    </section>
+  </main>
+
+  <!-- popup ເບິ່ງຮູບ/ວິດີໂອ -->
+  <div id="viewer" class="viewer" hidden>
+    <button id="viewerClose" class="viewer-close" aria-label="ປິດ" data-icon="close"></button>
+    <div id="viewerContent" class="viewer-content"></div>
+    <p id="viewerCaption" class="viewer-caption"></p>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="upload.js"></script>
+</body>
+</html>
